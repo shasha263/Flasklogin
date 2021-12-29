@@ -1,5 +1,8 @@
 from flask import Blueprint,jsonify,request
 from app.models import Marvel_char,db
+from flask_login import login_required 
+from .apihelpers import token_required
+
 
 api=Blueprint('api',__name__,url_prefix='/api')
 
@@ -8,6 +11,7 @@ def test():
     return {'datadatadata':'Fancy'}
 
 @api.route('/marvelCharacters',methods=['GET'])
+@login_required
 def marvelcharacters():    
     marvelcharacters =[character.to_dict() for character in Marvel_char.query.all()]
     return jsonify(marvelcharacters)
@@ -28,6 +32,7 @@ def get_name(nm):
     return jsonify([x.to_dict() for x in marvelcharacters])
 
 @api.route('/createcharacter',methods=['POST'])   
+@token_required
 def createchar():
     data=request.get_json()
     print(data)
@@ -41,6 +46,7 @@ def createchar():
     return jsonify({'Created':newchar.to_dict()})
 
 @api.route('/update/<string:id>',methods=['PUT'])   
+@token_required
 def updatechar(id):
     data=request.get_json()
     print(data)
@@ -52,7 +58,8 @@ def updatechar(id):
     db.session.commit()
     return jsonify({'Updated':character.to_dict()})
 
-@api.route('/delete/<string:id>',methods=['DELETE'])   
+@api.route('/delete/<string:id>',methods=['DELETE']) 
+@token_required  
 def deletechar(id):
     p=Marvel_char.query.get(id)
     if not p:

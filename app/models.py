@@ -3,6 +3,7 @@ from flask_login import LoginManager,UserMixin
 from datetime import datetime,timezone
 from werkzeug.security import generate_password_hash
 from uuid import uuid4
+from secrets import token_hex
 
 login = LoginManager()
 db= SQLAlchemy()
@@ -19,6 +20,7 @@ class User(db.Model, UserMixin):
     last_name=db.Column(db.String() , nullable =True,default='')
     password=db.Column(db.String() , nullable =False)
     created_on= db.Column(db.DateTime, nullable= False, default=datetime.now(timezone.utc))
+    apitoken=db.Column(db.String(32),nullable=True,default='None')
 
     def __init__(self,username,email,first_name,last_name, password):
         self.username=username
@@ -27,6 +29,9 @@ class User(db.Model, UserMixin):
         self.first_name=first_name
         self.last_name=last_name
         self.id=str(uuid4())
+        self.apitoken=token_hex(16)
+       
+
 
 class Marvel_char(db.Model):
     id= db.Column(db.String,primary_key=True)
