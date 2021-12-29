@@ -28,3 +28,36 @@ class User(db.Model, UserMixin):
         self.last_name=last_name
         self.id=str(uuid4())
 
+class Marvel_char(db.Model):
+    id= db.Column(db.String,primary_key=True)
+    name= db.Column(db.String() ,  nullable =False,unique=True)
+    description=db.Column(db.String() ,  nullable =True)
+    comics_appeared_in=db.Column(db.Integer ,  nullable =False) 
+    super_power=db.Column(db.String() ,  nullable =True)
+    date_created= db.Column(db.DateTime, nullable= False, default=datetime.now(timezone.utc))
+
+    def to_dict(self):
+        return{
+            'id':self.id,
+            'name':self.name,
+            'description':self.description,
+            'comics_appeared_in':self.comics_appeared_in,
+            'super_power':self.super_power         
+        }
+    
+    def from_dict(self,dict):
+        if not self.id:
+            self.id=str(uuid4())
+        if dict.get('name'):
+            self.name=dict['name']
+        if dict.get('comics_appeared_in'):   
+            self.comics_appeared_in=dict['comics_appeared_in']              
+        
+        if dict.get('description'):
+            self.description= dict['description']
+        
+        
+        if dict.get('super_power'):
+            self.super_power = dict ['super_power']  
+
+    
