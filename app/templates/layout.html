@@ -13,11 +13,12 @@
   <body>
     <nav class="nav" nav-pills nav-fill>
         <a class="nav-link" href="{{url_for('home')}}">Home</a> 
+        
           
-        {%if current_user.is_authenticated%}
+        {%if current_user.is_authenticated%}         
+        <a class="nav-link" href="{{url_for('api.apicall')}}">Marvel Character API </a> 
         <a class="nav-link" href="{{url_for('marvel.profile')}}">User Profile</a>  
-        <a class="nav-link" href="{{url_for('marvel.logout')}}">Logout</a>  
-        <a class="nav-link" href="{{url_for('api.marvelcharacters')}}">API TEST</a>   
+        <a class="nav-link" href="{{url_for('marvel.logout')}}">Logout</a>   
         {%else%}
           <a class="nav-link" href="{{url_for('marvel.signin')}}">Login</a>       
           <a class="nav-link" href="{{url_for('marvel.signup')}}">Create an Account</a>      

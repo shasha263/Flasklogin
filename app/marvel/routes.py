@@ -56,6 +56,7 @@ def signup():
 
     return render_template('signup.html',form=form)
 
+
 @marvel.route('/logout')
 @login_required
 def logout():

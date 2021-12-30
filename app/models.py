@@ -36,9 +36,9 @@ class User(db.Model, UserMixin):
 class Marvel_char(db.Model):
     id= db.Column(db.String,primary_key=True)
     name= db.Column(db.String() ,  nullable =False,unique=True)
-    description=db.Column(db.String() ,  nullable =True)
+    description=db.Column(db.String() ,  nullable =True, default=None)
     comics_appeared_in=db.Column(db.Integer ,  nullable =False) 
-    super_power=db.Column(db.String() ,  nullable =True)
+    super_power=db.Column(db.String() ,  nullable =True, default=None)
     date_created= db.Column(db.DateTime, nullable= False, default=datetime.now(timezone.utc))
 
     def to_dict(self):

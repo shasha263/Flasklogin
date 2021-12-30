@@ -1,14 +1,10 @@
-from flask import Blueprint,jsonify,request
+from flask import Blueprint,jsonify,request,render_template
 from app.models import Marvel_char,db
 from flask_login import login_required 
 from .apihelpers import token_required
 
 
 api=Blueprint('api',__name__,url_prefix='/api')
-
-@api.route('/')
-def test():
-    return {'datadatadata':'Fancy'}
 
 @api.route('/marvelCharacters',methods=['GET'])
 @login_required
@@ -18,6 +14,7 @@ def marvelcharacters():
 
 @api.route('/marvelCharacters/<int:year>',methods=['GET'])
 def get_number(year):
+    year=input("Enter the year:")
     marvelcharacters=Marvel_char.query.filter_by(comics_appeared_in	=year).all()
     if not marvelcharacters:
         return jsonify({year:None})
@@ -67,6 +64,12 @@ def deletechar(id):
     db.session.delete(p)
     db.session.commit()
     return jsonify({'Deleted':p.to_dict()})
+
+
+@api.route('/apicall')
+def apicall():
+
+    return render_template('apicall.html')
 
     
 

@@ -1,7 +1,6 @@
 *{
     font-family: sans-serif;
-    background-color: rgb(217, 240, 243);
-    
+    background-color: rgb(217, 240, 243); 
 }
 
 h1{
@@ -10,4 +9,8 @@ h1{
 
 h2{
     color: rgb(12, 32, 12);
+}
+
+h4{
+    color: rgb(51, 12, 102);
 }

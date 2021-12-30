@@ -1,16 +1,15 @@
-{% extends 'layout.html'%}
+{% extends 'layout.html' %}
 
-{% block title %} Marvel Character API {% endblock title%}
-{% block content%}
+{%block title%}Sign In {%endblock title%}
+
+{%block content%}
 
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <title>Marvel Character</title>
-  
-
+  <title>Title</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,14 +20,26 @@
 </head>
 
 <body>
-  <h1></h1>
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="centered"><h1>Marvel Comic Characters</h1></div>
-      <img src="../static/images/marvel.jpg" class="img-fluid rounded-circle" alt="Responsive image">
-      
-    </div>
+
+  <div>
+
   </div>
+  <div class="row justify-content-center mt=8">
+    <h1> Marvel Character API</h1>
+  </div>
+
+  <div class="row justify-content-center mt=8">
+
+    <a class="nav-link" href="{{url_for('api.marvelcharacters')}}"><img
+        src="http://images4.wikia.nocookie.net/__cb20120629222008/ludus/images/d/da/Marvel_Comics_-_Characters.jpg"
+        class="img-fluid rounded-circle img-thumbnail">
+    </a>
+  </div>
+  <div class="row justify-content-center mt=8">
+    <h4>Click the image above to see Marvel Character API :-) </h4>
+  </div>
+ 
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

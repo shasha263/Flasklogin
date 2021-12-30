@@ -3,7 +3,7 @@ from config import Config
 from flask_cors import CORS
 
 from .marvel.routes import marvel
-from .api.routes import api
+from .api.routes import api,apicall
 from .models import login,db
 
 from flask_migrate import Migrate, migrate
